@@ -1,0 +1,9 @@
+rootProject.name = 'examples'
+include ':eureka-sever'
+project(":eureka-sever").projectDir = new File("spring-cloud/eureka-sever")
+include ':consumer-server'
+project(":consumer-server").projectDir = new File("spring-cloud/chapter1/consumer/consumer-server")
+include ':provider-server', ':provider-api'
+project(":provider-server").projectDir = new File("spring-cloud/chapter1/provider/provider-server")
+project(":provider-api").projectDir = new File("spring-cloud/chapter1/provider/provider-api")
+

@@ -1,0 +1,11 @@
+description '服务提供api'
+
+jar {
+    enabled = false
+}
+
+dependencies {
+    implementation(
+            "org.springframework.cloud:spring-cloud-starter-openfeign"
+    )
+}

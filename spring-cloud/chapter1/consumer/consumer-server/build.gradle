@@ -1,0 +1,22 @@
+description '消费服务'
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+
+    // 这里是因为自己开发维护全项目，如果公司是分组开发，这里应该就不能使用compile project了
+    // 需要将provider-api打成jar包上传到nexus仓库，此处在implementation中引用
+    compile project(':provider-api')
+
+    implementation(
+            "org.springframework.boot:spring-boot-starter-undertow",
+            "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
+            "org.springframework.cloud:spring-cloud-starter-hystrix:$hystrixVersion",
+            "org.springframework.cloud:spring-cloud-starter-feign:$feignVersion"
+    )
+}
+
+bootJar {
+    baseName = 'order-server'
+}

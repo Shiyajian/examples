@@ -1,0 +1,15 @@
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+
+    compile project(":provider-api")
+
+    implementation(
+            "org.springframework.boot:spring-boot-starter-undertow",
+            "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
+            "org.springframework.cloud:spring-cloud-starter-hystrix:$hystrixVersion",
+            "org.springframework.cloud:spring-cloud-starter-feign:$feignVersion",
+    )
+}

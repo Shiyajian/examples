@@ -1,0 +1,11 @@
+server:
+  port: 8000
+  undertow:
+    direct-buffers: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    # ip-address:
+    prefer-ip-address: true

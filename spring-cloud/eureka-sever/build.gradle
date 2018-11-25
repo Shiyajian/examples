@@ -1,0 +1,10 @@
+description '服务注册中心'
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-starter-undertow",
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+    )
+}

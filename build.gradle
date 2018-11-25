@@ -1,0 +1,82 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+// 子模块通用配置
+subprojects {
+    apply plugin: "java"
+    apply plugin: "maven"
+    apply plugin: "idea"
+    // boot插件不通用！！！gradle刷新时候，默认执行bootJar任务，如果没有一个MainClass，那么就报错。部分项目只是打成jar包供其他项目依赖
+    // apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    ext {
+        compileJava.options.encoding = "UTF-8"
+        compileTestJava.options.encoding = "UTF-8"
+    }
+    group "com.shiyajian"
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        // https://jfrog.com/knowledge-base/why-should-i-use-jcenter-over-maven-central/
+        // jcenter() 文章中写 jcenter 优于 mavenCentral()，实际好像并不是
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            // @see {https://github.com/spring-cloud/spring-cloud-release/blob/master/spring-cloud-dependencies/pom.xml}
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+            // @see {https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml}
+            // or @see {https://docs.spring.io/spring-boot/docs/2.1.0.RELEASE/reference/htmlsingle/#appendix-dependency-versions}
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        }
+    }
+
+    // 配置所有子项目的依赖，大部分是工具类和辅助工具
+    // 原则：如果能从上面dependencyManagement查到版本的，都使用implementation继承，找不到的使用最新版本
+    dependencies {
+
+        implementation(
+                "commons-beanutils:commons-beanutils:$beanUtilsVersion",
+                "com.github.ben-manes.caffeine:guava",
+                "org.apache.commons:commons-lang3",
+                "joda-time:joda-time",
+        )
+
+        // why `debugImplementation` can"t work ?? I don"t know
+        compileOnly(
+                "com.google.code.findbugs:jsr305:$findbugsVersion",
+                "org.springframework.boot:spring-boot-devtools",
+                "org.projectlombok:lombok",
+                "javax.servlet:javax.servlet-api"
+        )
+
+        testImplementation(
+                "junit:junit",
+                "org.springframework.boot:spring-boot-starter-test"
+        )
+    }
+
+    // 全局web容器由`undertow`替换成`tomcat`
+    configurations.all {
+        exclude group:'org.springframework.boot',module:'spring-boot-starter-tomcat'
+    }
+
+    // 继承自dependencyManagement的jar包，原则上不应该去修改版本，因为每个版本都是spring经过权衡和测试的
+    // 继承的jar如果版本有问题，可以采用下面这种方式修改版本
+    ext["lombok.version"] = "$lombokVersion"
+}
