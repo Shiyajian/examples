@@ -1,0 +1,10 @@
+description 'netty服务端'
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-starter-undertow",
+            "io.netty:netty-all"
+    )
+}

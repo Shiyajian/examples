@@ -1,9 +1,19 @@
 rootProject.name = 'examples'
-include ':eureka-sever'
-project(":eureka-sever").projectDir = new File("spring-cloud/eureka-sever")
+
+// spring-boot
+// -chapter1
+include ':netty-server'
+project(":netty-server").projectDir = new File("spring-boot/chapter1/netty-server")
+
+// spring-cloud
+include ':eureka-server'
+project(":eureka-server").projectDir = new File("spring-cloud/eureka-server")
+
+// - chapter1
 include ':consumer-server'
 project(":consumer-server").projectDir = new File("spring-cloud/chapter1/consumer/consumer-server")
 include ':provider-server', ':provider-api'
 project(":provider-server").projectDir = new File("spring-cloud/chapter1/provider/provider-server")
 project(":provider-api").projectDir = new File("spring-cloud/chapter1/provider/provider-api")
+
 
