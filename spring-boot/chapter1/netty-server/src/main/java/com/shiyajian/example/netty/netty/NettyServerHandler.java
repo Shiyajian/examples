@@ -41,7 +41,7 @@ public class NettyServerHandler  extends ChannelInboundHandlerAdapter {
                 System.out.println("已经5秒没有接收到客户端的信息了");
                 if (idle_count > 1) {
                     System.out.println("关闭这个不活跃的channel");
-                    ctx.channel().close();
+                    // ctx.channel().close();
                 }
                 idle_count++;
             }
