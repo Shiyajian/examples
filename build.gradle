@@ -55,6 +55,7 @@ subprojects {
                 "com.github.ben-manes.caffeine:guava",
                 "org.apache.commons:commons-lang3",
                 "joda-time:joda-time",
+                "org.springframework.boot:spring-boot-starter-log4j2"
         )
 
         // why `debugImplementation` can"t work ?? I don"t know
@@ -74,6 +75,7 @@ subprojects {
     // 全局web容器由`undertow`替换成`tomcat`
     configurations.all {
         exclude group:'org.springframework.boot',module:'spring-boot-starter-tomcat'
+        exclude group:'org.springframework.boot',module:'spring-boot-starter-logging'
     }
 
     // 继承自dependencyManagement的jar包，原则上不应该去修改版本，因为每个版本都是spring经过权衡和测试的

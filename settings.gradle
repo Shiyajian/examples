@@ -1,9 +1,15 @@
 rootProject.name = 'examples'
+// java
+// - chapter1
+include ':switch-if-else' 
+project(":switch-if-else").projectDir = new File("java/chapter1/switch-if-else")
+
 
 // spring-boot
-// -chapter1
-include ':netty-server'
+// - chapter1
+include ':netty-server',':log'
 project(":netty-server").projectDir = new File("spring-boot/chapter1/netty-server")
+project(":log").projectDir = new File("spring-boot/chapter1/log")
 
 // spring-cloud
 include ':eureka-server'

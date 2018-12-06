@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 控制台打印日志的相关配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] - %m%n</pattern>
+        </encoder>
+        <!-- 日志级别过滤器 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--&lt;!&ndash; 文件保存日志的相关配置 &ndash;&gt;-->
+    <!--<appender name="ERROR-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--&lt;!&ndash; 保存日志文件的路径 &ndash;&gt;-->
+        <!--<file>/logs/error.log</file>-->
+        <!--&lt;!&ndash; 日志格式 &ndash;&gt;-->
+        <!--<encoder>-->
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss} [%class:%line] - %m%n</pattern>-->
+        <!--</encoder>-->
+        <!--&lt;!&ndash; 日志级别过滤器 &ndash;&gt;-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--&lt;!&ndash; 过滤的级别 &ndash;&gt;-->
+            <!--<level>ERROR</level>-->
+            <!--&lt;!&ndash; 匹配时的操作：接收（记录） &ndash;&gt;-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--&lt;!&ndash; 不匹配时的操作：拒绝（不记录） &ndash;&gt;-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+        <!--&lt;!&ndash; 循环政策：基于时间创建日志文件 &ndash;&gt;-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash; 日志文件名格式 &ndash;&gt;-->
+            <!--<fileNamePattern>error.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+            <!--&lt;!&ndash; 最大保存时间：30天&ndash;&gt;-->
+            <!--<maxHistory>30</maxHistory>-->
+        <!--</rollingPolicy>-->
+    <!--</appender>-->
+
+    <!-- 基于dubug处理日志：具体控制台或者文件对日志级别的处理还要看所在appender配置的filter，如果没有配置filter，则使用root配置 -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR-OUT" />
+    </root>
+</configuration>
