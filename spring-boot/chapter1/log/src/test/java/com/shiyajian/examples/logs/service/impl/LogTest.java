@@ -44,6 +44,7 @@ public class LogTest {
     }
     @Test
     public void test1(){
+
         log.record1(logEntity);
     }
     @Test
