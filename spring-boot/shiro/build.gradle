@@ -1,0 +1,6 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies{
+    // https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring
+    compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.4.0'
+}
