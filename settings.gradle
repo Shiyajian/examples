@@ -5,10 +5,11 @@ project(":switch-if-else").projectDir = new File("java/switch-if-else")
 
 
 // spring-boot
-include ':netty-server',':log',':shiro'
+include ':netty-server',':log',':shiro',':session-redis'
 project(":netty-server").projectDir = new File("spring-boot/netty-server")
 project(":log").projectDir = new File("spring-boot/log")
 project(":shiro").projectDir = new File("spring-boot/shiro")
+project(":session-redis").projectDir = new File("spring-boot/session-redis")
 
 // spring-cloud
 include ':eureka-server'
