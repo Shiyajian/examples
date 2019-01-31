@@ -11,7 +11,7 @@ import org.springframework.session.web.http.HttpSessionIdResolver;
  * @author shiyajian
  * create: 2019-01-31
  */
-@EnableRedisHttpSession
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3600)
 @Configuration
 public class RedisSessionConfiguration {
 
