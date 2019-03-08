@@ -1,8 +1,9 @@
 rootProject.name = 'examples'
 // java
-include ':switch-if-else',':jwt'
+include ':switch-if-else',':jwt',':review'
 project(":switch-if-else").projectDir = new File("java/switch-if-else")
 project(":jwt").projectDir = new File("java/jwt")
+project(":review").projectDir = new File("java/review")
 
 
 // spring-boot
